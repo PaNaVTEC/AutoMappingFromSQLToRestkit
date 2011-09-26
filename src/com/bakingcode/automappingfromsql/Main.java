@@ -18,8 +18,8 @@ public class Main {
 	
 
 	// REGEX
-	private final static String PATTERN_CREATE_TABLE = "CREATE\\s*TABLE\\s*(\\w+)[^;]*;";
-	private final static String PATTERN_SQL = "(\\w+)\\s*((INTEGER|TEXT|VARCHAR|LONGTEXT|BLOB|DATE|TIME|BOOLEAN|FLOAT|DOUBLE|BIGINT|TINYINT))[^,]*,";
+	private final static String PATTERN_CREATE_TABLE = "CREATE\\s*TABLE\\s*`?(\\w+)[^;]*;";
+	private final static String PATTERN_SQL = "(\\w+)`?\\s*((INTEGER|TEXT|VARCHAR|LONGTEXT|BLOB|DATE|TIME|BOOLEAN|FLOAT|DOUBLE|BIGINT|TINYINT))[^,]*,";
 	private final static String PATTERN_ALTER_TABLE = "ALTER\\s*TABLE\\s*(\\w+)\\s*ADD\\s*FOREIGN\\s*KEY\\s*\\w+\\s*\\((\\w+)\\)\\s*REFERENCES\\s*(\\w+)";
 
 	// PRIVATE CONSTANTS
@@ -54,7 +54,10 @@ public class Main {
 			boolean isNotNull, boolean isKey, boolean hasDefaultValue) {
 
 		String transformedType = null;
-
+		
+		// for best comparision get uppercase
+		typeField = typeField.toUpperCase();
+		
 		if (typeField.equals("INTEGER") || typeField.equals("TINYINT")) {
 			// Si puede ser nulo usaremos NSNumber.
 			// SI es una FK dejamos el -INT-
@@ -124,7 +127,7 @@ public class Main {
 
 		while (m.find()) {
 
-			Pattern pC = Pattern.compile(PATTERN_SQL);
+			Pattern pC = Pattern.compile(PATTERN_SQL, Pattern.CASE_INSENSITIVE);
 			String group = m.group();
 			Matcher mC = pC.matcher(group);
 			String strName = checkTableName(m.group(1));
