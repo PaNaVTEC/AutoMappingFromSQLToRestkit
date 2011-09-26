@@ -3,16 +3,16 @@
 Una vez bajado el código fuente, ejecutaremos el mismo pasandole 2
 parámetros:
 
--   1: La ruta al script SQL
--   2: La ruta donde guardar el modelo
+-   1: La ruta al script SQL que contiene los CREATE tables etc...
+-   2: La ruta a una carpeta donde guardar el modelo
 
 El programa automaticamente creará y mapeara el modelo.
 
 ## LIMITACIONES
 
 Solo he probado a generar el modelo con el programa [SQLEditor de
-Mac][], por lo que si obtienes el script sql de otro programa, puede no
-funcionar ;) El reconocimiento de foreign keys es mediate el nombre del
+Mac][] y MYSQL workbench por lo que si obtienes el script sql de otro programa, 
+puede no funcionar por lo que si obtienes el script sql de otro programa ;) El reconocimiento de foreign keys es mediate el nombre del
 campo, es decir, solo se reconocen foreign keys con el nombre:
 “id\_campo” o “campo\_id”, si sigues esa estructura no debes tener
 problemas. Si en tu bdd se usa otro sufijo o prefijo, puedes cambiar el
@@ -22,14 +22,14 @@ código fuente.
 
 The program needs two params for run correctly:
 
--   1: Path to SQL script
+-   1: Path to SQL script that contains CREATE table sentences etc...
 -   2: Path to a folder for save dom.
 
 The program creates and gives mapping automatically.
 
 ## LIMITATIONS
 
-I only tested this with [SQLEditor for Mac][SQLEditor de Mac]. If you
+I only tested this with [SQLEditor for Mac][SQLEditor de Mac] and MYSQL workbench. If you
 get the SQL script of a another program, maybe it does not work ;). The
 foreign keys are mapped by the field name. It only recognizes the field
 name with prefix “id\_fieldname” or suffix “fieldname\_id”. If your
